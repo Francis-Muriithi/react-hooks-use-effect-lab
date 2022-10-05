@@ -4,6 +4,20 @@ function Question({ question, onAnswered }) {
   const [timeRemaining, setTimeRemaining] = useState(10);
 
   // add useEffect code
+  useEffect(() => {
+
+    const countdowntimer = setTimeout(() => {
+      setTimeRemaining(timeRemaining - 1);
+    }, 1000);
+    if (timeRemaining === 0) {
+      handleAnswer(false);
+    }
+    console.log (timeRemaining);
+
+    return () => {
+      clearTimeout(countdowntimer);
+    };
+  }, [timeRemaining]);
 
   function handleAnswer(isCorrect) {
     setTimeRemaining(10);
